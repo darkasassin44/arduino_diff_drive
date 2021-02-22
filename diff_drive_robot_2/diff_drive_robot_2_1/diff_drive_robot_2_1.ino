@@ -1,12 +1,20 @@
 /*
-   Title : diff_drive_robot_2
+   Title : diff_drive_robot_2_1
    Author : ConceptBug
 
    < Description >
-   "STEP #2"
-   Apart from ealier STEP, confirming PWM signals from RC receiver, we will test basic motor operation this STEP.
-   With this STEP, we will be able to predict how the motor will operate depending on how we make the signals.
-   For example, we would know
+   "STEP #2-1"
+   Before operating the motors, we must check the motor wiring and soldering first.
+   Through this step, we can assure the motor direction relative to motor wiring(or soldering).
+
+   When I assemble the chassis, I did not consider and check the wiring between motor and motor drive.
+   The motors should spin forward direction if we put HIGH at IN1(or IN3), and LOW at IN2(or IN4).
+   But, even if we put the HIGH in IN1(or IN3) and the LOW in IN2(or IN4), the result cannot be guaranteed
+   if the connection between wires from motor and motor driver is incorrect, or soldered wires with motor itself is wrong.
+   
+   By calling motorTest() function, we would know the actual spinning direction of motor according to the parameter 'Direction' we give.
+   As a result, I coud know that the right motor connection should be opposite.
+   Changing the motor soldering and connection on motor drive results same effect.
 */
 
 #define recvCH1 9   // PWM signal from receiver CH1: Throttle
@@ -84,15 +92,15 @@ void setup() {
 
 void loop() {
   // Left motor, direction: false, with 50 speed, for 3 sec.
-  motorTest(false, false, 100, 2000);
+  motorTest(false, false, 100, 2000); // for left motor, Side; 'false' was forward.
   motorStop(false, 1000);
   // Left motor, direction: true, with 50 speed, for 3 sec.
-  motorTest(false, true, 100, 2000);
+  motorTest(false, true, 100, 2000);  // for left motor, Side; 'true' was backward.
   motorStop(false, 1000);
   // Right motor, direction: false, with 50 speed, for 3 sec.
-  motorTest(true, false, 100, 2000);
+  motorTest(true, false, 100, 2000);  // for left motor, Side; 'false' was backward.
   motorStop(true, 1000);
   // Right motor, direction: true, with 50 speed, for 3 sec.
-  motorTest(true, true, 100, 2000);
+  motorTest(true, true, 100, 2000);   // for left motor, Side; 'true' was forward.
   motorStop(true, 1000);
 }
