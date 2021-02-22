@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "/dev/tty.usbmodem14301",
+    "sketch": "diff_drive_robot_2/diff_drive_robot_2.ino"
+}
